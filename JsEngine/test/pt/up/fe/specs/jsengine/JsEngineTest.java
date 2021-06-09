@@ -42,7 +42,7 @@ public class JsEngineTest {
     }
 
     private JsEngine getEngine() {
-        return JsEngineType.GRAALVM.newEngine();
+        return JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         // return JsEngineType.NASHORN.newEngine();
         // return GRAAL_JS.get();
     }
@@ -210,7 +210,7 @@ public class JsEngineTest {
 
     @Test
     public void testGetterSetter() {
-        var engine = JsEngineType.GRAALVM.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
 
         String code = "var person = {\r\n" +
                 "    firstName: 'Jimmy',\r\n" +
@@ -236,7 +236,7 @@ public class JsEngineTest {
     @Test
     public void testAccessors() {
 
-        var engine = JsEngineType.GRAALVM_COMPAT.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         var result = engine.eval("var FileClass = Java.type('java.io.File');" +
                 "var file = new FileClass(\"myFile.md\");" +
                 "file.name;");
@@ -246,7 +246,7 @@ public class JsEngineTest {
 
     @Test
     public void testClosures() {
-        var engine = JsEngineType.GRAALVM.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         var result = engine.eval(getResource("closures.js"));
 
         assertEquals("[10, 20]", engine.getValues(result).toString());
@@ -254,7 +254,7 @@ public class JsEngineTest {
 
     @Test
     public void testGet() {
-        var engine = JsEngineType.GRAALVM.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         engine.eval("var a = 10; var b = 'hello'");
 
         assertEquals("10", engine.get("a").toString());
@@ -263,7 +263,7 @@ public class JsEngineTest {
 
     @Test
     public void testArrowFunction() {
-        var engine = JsEngineType.GRAALVM.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         engine.eval("const materials = [\r\n" +
                 "  'Hydrogen',\r\n" +
                 "  'Helium',\r\n" +
@@ -278,7 +278,7 @@ public class JsEngineTest {
 
     @Test
     public void testPrint() {
-        var engine = JsEngineType.GRAALVM.newEngine();
+        var engine = JsEngineType.GRAALVM_EXPERIMENTAL.newEngine();
         // Empty print
         engine.eval("print()");
         engine.eval("print('Using print()\\n')");

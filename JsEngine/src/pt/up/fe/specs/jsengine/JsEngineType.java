@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import pt.up.fe.specs.jsengine.graal.GraalvmJsEngine;
+import pt.up.fe.specs.jsengine.graal.ExperimentalGraalvmJsEngine;
 import pt.up.fe.specs.jsengine.nashorn.NashornEngine;
 import pt.up.fe.specs.util.exceptions.NotImplementedException;
 
@@ -24,7 +25,8 @@ public enum JsEngineType {
 
     NASHORN,
     GRAALVM_COMPAT,
-    GRAALVM;
+    GRAALVM,
+    GRAALVM_EXPERIMENTAL;
 
     /**
      * Creates a new engine, according to the type. TODO: Move to JsEngineType
@@ -45,6 +47,8 @@ public enum JsEngineType {
             return new GraalvmJsEngine(forbiddenClasses, true);
         case GRAALVM:
             return new GraalvmJsEngine(forbiddenClasses);
+        case GRAALVM_EXPERIMENTAL:
+            return new ExperimentalGraalvmJsEngine(forbiddenClasses);
         default:
             throw new NotImplementedException(type);
         }
